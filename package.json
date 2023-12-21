@@ -1,0 +1,16 @@
+{
+  "name": "readme-gen",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node Develop/index.js"
+  },
+  "author": "Rocky",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "inquirer": "^6.5.2"
+  }
+}
