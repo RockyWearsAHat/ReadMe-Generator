@@ -33,7 +33,7 @@ class InquirerQuestion {
   }
 }
 
-const RDMEsections = [];
+let RDMEsections = [];
 
 const questions = [
   new InquirerQuestion(
@@ -191,11 +191,10 @@ async function init() {
       switch (sectionAction.action) {
         case "Move":
           clearConsole();
-          let nonSelectedSections = [];
-          RDMEsections.forEach((val) => {
-            if (val.name != RDMEsections[selectedSection.section].name)
-              nonSelectedSections.push(val);
-          });
+          const nonSelectedSections = RDMEsections.filter(
+            (val) => val.value != RDMEsections[selectedSection.section].value
+          );
+
           let sectionToMoveRelativeTo = await askInquirerQuestion(
             new InquirerQuestion(
               InquirerTypes.list,
@@ -207,6 +206,7 @@ async function init() {
               nonSelectedSections
             )
           );
+          //nonSelectedSections eg 1 3, section 2
 
           let sectionToMoveAction = await askInquirerQuestion(
             new InquirerQuestion(
@@ -223,34 +223,40 @@ async function init() {
             )
           );
 
-          let removedSect, index;
+          console.log(
+            RDMEsections[selectedSection.section],
+            RDMEsections[sectionToMoveRelativeTo.section]
+          );
           switch (true) {
             case sectionToMoveAction.selectedAction.indexOf("Above ") > -1:
-              reindexReadMeSections();
-              removedSect = RDMEsections[selectedSection.section];
-              RDMEsections.splice(selectedSection.section, 1);
-              console.log(sectionToMoveRelativeTo.section);
               RDMEsections.splice(
-                sectionToMoveRelativeTo.section - 1 >= 0
-                  ? sectionToMoveRelativeTo.section - 1
+                RDMEsections[sectionToMoveRelativeTo.section].value-- > 0
+                  ? RDMEsections[sectionToMoveRelativeTo.section].value--
                   : 0,
                 0,
-                removedSect
+                RDMEsections[selectedSection.section]
               );
+              RDMEsections.splice(
+                RDMEsections[selectedSection.section].value,
+                1
+              );
+
               reindexReadMeSections();
               break;
             case sectionToMoveAction.selectedAction.indexOf("Below ") > -1:
-              reindexReadMeSections();
-              removedSect = RDMEsections[selectedSection.section];
-              RDMEsections.splice(selectedSection.section, 1);
-              console.log(sectionToMoveRelativeTo.section);
               RDMEsections.splice(
-                sectionToMoveRelativeTo.section + 1 <= RDMEsections.length
-                  ? sectionToMoveRelativeTo.section + 1
-                  : RDMEsections.length,
+                RDMEsections[sectionToMoveRelativeTo.section].value++ <
+                  RDMEsections.length - 1
+                  ? RDMEsections[sectionToMoveRelativeTo.section].value++
+                  : RDMEsections.length - 1,
                 0,
-                removedSect
+                RDMEsections[selectedSection.section]
               );
+              RDMEsections.splice(
+                RDMEsections[selectedSection.section].value,
+                1
+              );
+
               reindexReadMeSections();
               break;
             case sectionToMoveAction.selectedAction.indexOf("< Back") > -1:
