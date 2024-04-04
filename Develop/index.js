@@ -195,6 +195,7 @@ const openFileAndWaitForUpdates = async (fileName, currentContent) => {
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
   try {
+    if (!fs.existsSync("out")) fs.mkdirSync("out");
     fs.writeFileSync("out/" + fileName, data);
     console.log(
       chalk.green(
