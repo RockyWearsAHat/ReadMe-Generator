@@ -403,7 +403,7 @@ async function init() {
     );
     // console.log("File contents:", fileContents);
     if (!currentContent) {
-      content.push({ section: fileName, fileContents });
+      content.push({ section: sectionToAddContentTo.section, fileContents });
     } else {
       content.find(
         (val) => val.section === sectionToAddContentTo.section
