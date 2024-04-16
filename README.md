@@ -1,6 +1,6 @@
 # Install
 
-## [Demo](https://www.youtube.com/watch?v=SXB2whcQNfILinks to an external site.)
+## [Demo](https://www.youtube.com/watch?v=SXB2whcQNfI)
 
 To install and this program, clone the repository with the command `git clone https://github.com/RockyWearsAHat/ReadMe-Generator.git`
 
