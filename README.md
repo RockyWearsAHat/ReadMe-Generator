@@ -1,5 +1,7 @@
 # Install
 
+## [Demo](https://www.youtube.com/watch?v=SXB2whcQNfILinks to an external site.)
+
 To install and this program, clone the repository with the command `git clone https://github.com/RockyWearsAHat/ReadMe-Generator.git`
 
 After cloning the repository, open a terminal in the downloaded folder, or cd into the folder and run `code .`, you can also just open the folder in your favorite code editor
